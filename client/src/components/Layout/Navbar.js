@@ -1,45 +1,21 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Container,
-} from "@material-ui/core";
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 
-// icons
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
-const Navbar = () => {
-  const classes = useStyles();
-
+const Header = () => {
   return (
-    <div className={classes.root}>
-      <AppBar position="sticky">
-        <Container>
-          <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              Ecommerce
-            </Typography>
-            <Button color="inherit">Login</Button>
-            <Button color="inherit" endIcon={<ShoppingCartIcon />}>
-              Cart
-            </Button>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </div>
+    <Navbar bg="light" expand="md">
+      <Container>
+        <Navbar.Brand href="/">shopify</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link href="/cart">Cart</Nav.Link>
+            <Nav.Link href="/signin">Signin</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default Header;
