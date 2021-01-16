@@ -1,6 +1,6 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { Product } from "../../models/Product";
-import { NotFoundError } from "../../utils";
+import { BadRequestError, NotFoundError } from "../../utils";
 
 const router = express.Router();
 
@@ -12,9 +12,12 @@ router.get("/", async (req, res) => {
 
 /* returns a single product */
 router.get("/:id", async (req: Request, res: Response) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findOne({
+    _id: req.params.id,
+  });
   if (!product) {
-    throw new NotFoundError();
+    // console.log();
+    throw new BadRequestError("Product not found");
   }
   res.send(product);
 });

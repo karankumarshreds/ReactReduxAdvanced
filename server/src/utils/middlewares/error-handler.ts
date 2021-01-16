@@ -12,8 +12,8 @@ export const errorHandler = (
     return res.status(err.statusCode).send({ errors: err.serialize() });
   }
   // and if not
-  console.log(err);
   res.status(400).send({
     errors: [{ message: "Something went wrong" }],
   });
+  next();
 };
