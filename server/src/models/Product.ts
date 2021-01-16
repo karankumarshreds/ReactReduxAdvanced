@@ -1,8 +1,32 @@
 import mongoose from "mongoose";
 
-interface ProductAttrs {}
+interface ProductAttrs {
+  user: string;
+  name: string;
+  image: string;
+  brand: string;
+  category: string;
+  description: string;
+  // rating: number;
+  // reviews: string[];
+  // numReviews: number;
+  price: number;
+  countInStock: number;
+}
 
-interface ProductDoc extends mongoose.Document {}
+interface ProductDoc extends mongoose.Document {
+  user: string;
+  name: string;
+  image: string;
+  brand: string;
+  category: string;
+  description: string;
+  rating: number;
+  reviews: string[];
+  numReviews: number;
+  price: number;
+  countInStock: number;
+}
 
 interface ProductModel extends mongoose.Model<ProductDoc> {
   build: (attrs: ProductAttrs) => ProductDoc;
@@ -36,7 +60,7 @@ const productSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
-    required: true,
+    // required: true,
     default: 0,
   },
   reviews: {
@@ -46,10 +70,11 @@ const productSchema = new mongoose.Schema({
         ref: "Review",
       },
     ],
+    default: [],
   },
   numReviews: {
     type: Number,
-    required: true,
+    // required: true,
     default: 0,
   },
   price: {
@@ -63,3 +88,13 @@ const productSchema = new mongoose.Schema({
     default: 0,
   },
 });
+
+productSchema.statics.build = (attrs: ProductAttrs) => {
+  return new Product(attrs);
+};
+
+const Product = mongoose.model<ProductDoc, ProductModel>(
+  "Product",
+  productSchema
+);
+export { Product };
