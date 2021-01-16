@@ -1,8 +1,18 @@
 import mongoose from "mongoose";
 
-interface UserAttrs {}
+interface UserAttrs {
+  name: string;
+  email: string;
+  password: string;
+}
 
-interface UserDoc extends mongoose.Document {}
+interface UserDoc extends mongoose.Document {
+  name: string;
+  email: string;
+  password: string;
+  isAdmin: Boolean;
+  createdAt: Date;
+}
 
 interface UserModel extends mongoose.Model<UserDoc> {
   build: (attrs: UserAttrs) => UserDoc;
