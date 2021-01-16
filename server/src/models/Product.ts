@@ -32,62 +32,72 @@ interface ProductModel extends mongoose.Model<ProductDoc> {
   build: (attrs: ProductAttrs) => ProductDoc;
 }
 
-const productSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
+const productSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    brand: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    rating: {
+      type: Number,
+      // required: true,
+      default: 0,
+    },
+    reviews: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Review",
+        },
+      ],
+      default: [],
+    },
+    numReviews: {
+      type: Number,
+      // required: true,
+      default: 0,
+    },
+    price: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    countInStock: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
-  name: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  brand: {
-    type: String,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  rating: {
-    type: Number,
-    // required: true,
-    default: 0,
-  },
-  reviews: {
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Review",
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
       },
-    ],
-    default: [],
-  },
-  numReviews: {
-    type: Number,
-    // required: true,
-    default: 0,
-  },
-  price: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-  countInStock: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-});
+    },
+  }
+);
 
 productSchema.statics.build = (attrs: ProductAttrs) => {
   return new Product(attrs);
