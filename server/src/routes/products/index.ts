@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { Product } from "../../models/Product";
+import { NotFoundError } from "../../utils";
 
 const router = express.Router();
 
@@ -10,8 +11,11 @@ router.get("/", async (req, res) => {
 });
 
 /* returns a single product */
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req: Request, res: Response) => {
   const product = await Product.findById(req.params.id);
+  if (!product) {
+    throw new NotFoundError();
+  }
   res.send(product);
 });
 
