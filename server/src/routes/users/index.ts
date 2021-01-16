@@ -3,7 +3,7 @@ import { User } from "../../models/User";
 
 const router = express.Router();
 
-router.get("/api/users", async (req, res) => {
+router.get("/api/user", async (req, res) => {
   const users = await User.find({});
   res.send(users);
 });

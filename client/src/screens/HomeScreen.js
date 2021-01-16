@@ -5,7 +5,7 @@ import { Row, Col } from "react-bootstrap";
 
 const HomeScreen = () => {
   const renderProducts = products.map((product) => (
-    <Col xs={12} md={6} lg={4} xl={3} className="my-2 align-center">
+    <Col xs={12} md={6} lg={4} xl={3} className="my-2">
       <Card key={product._id} product={product} />
     </Col>
   ));

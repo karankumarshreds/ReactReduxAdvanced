@@ -1,14 +1,15 @@
 import express from "express";
 import cors from "cors";
 
-// routes
+// route imoprts
 import { productFetchRouter } from "./routes/products/index";
 import { userFetchRouter } from "./routes/users/index";
 
 const app = express();
 app.use(cors());
 
-app.use(productFetchRouter);
+// routes
+app.use("/api/product", productFetchRouter);
 app.use(userFetchRouter);
 
 app.get("/", (req, res) => {
