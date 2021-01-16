@@ -7,6 +7,7 @@ export class RequestValidationError extends CustomError {
   constructor(errors: ValidationError[]) {
     super("Request validation error");
     this.errors = errors;
+    Object.setPrototypeOf(this, RequestValidationError.prototype);
   }
   serialize() {
     return this.errors.map((error) => ({
