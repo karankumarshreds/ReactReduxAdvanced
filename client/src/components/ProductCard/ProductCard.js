@@ -23,8 +23,13 @@ const ProductCard = ({ product }) => {
               <Modal
                 headingText={product.name}
                 buttonText="Quick View"
-                contentText={product.description}
-                yesText="Know more"
+                contentText={
+                  <div>
+                    <h5>Price: {product.price}</h5>
+                    <p>{product.description}</p>
+                  </div>
+                }
+                yesText="Buy now"
                 noText="Cancel"
               />
             </Col>
