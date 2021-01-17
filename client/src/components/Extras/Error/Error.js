@@ -7,7 +7,7 @@ const Error = ({ errorHeading, errorDescription }) => {
     <React.Fragment>
       {show && (
         <Alert
-          className="container"
+          className="container mt-5"
           variant="danger"
           onClose={() => setShow(false)}
           dismissible>
