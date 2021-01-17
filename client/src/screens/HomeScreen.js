@@ -4,6 +4,7 @@ import { productsFetchAction } from "../actions/productActions";
 import Card from "../components/ProductCard/ProductCard";
 import { Row, Col } from "react-bootstrap";
 import Spinner from "../components/Extras/Spinner/Spinner";
+import Error from "../components/Extras/Error/Error";
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +18,9 @@ const HomeScreen = (props) => {
   ));
   if (props.loading) {
     return <Spinner />;
+  }
+  if (props.error) {
+    return <Error errorHeading={props.error} />;
   }
   return (
     <div className="container my-5">

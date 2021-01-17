@@ -6,7 +6,7 @@ export class NotFoundError extends CustomError {
     super("Page not found !!!!!");
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
-  serialize() {
+  serializeErrors() {
     return [{ message: "Page not found" }];
   }
 }

@@ -16,11 +16,12 @@ export const productReducer = (
       handling list of products
     */
     case PRODUCTS_LIST_REQUEST:
-      return { ...state, loading: true, products: {} };
+      return { ...state, loading: true, error: false, products: {} };
     case PRODUCTS_LIST_SUCCESS:
       return {
         ...state,
         loading: false,
+        error: false,
         // change incoming array to object with id as keys
         products: { ..._.mapKeys(action.payload, "id") },
       };

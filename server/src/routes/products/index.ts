@@ -1,13 +1,13 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { Product } from "../../models/Product";
-import { BadRequestError, NotFoundError } from "../../utils";
+import { BadRequestError } from "../../utils";
 
 const router = express.Router();
 
 /* returns list of all products */
 router.get("/", async (req, res) => {
   const products = await Product.find({});
-  res.send(products);
+  res.send(products || []);
 });
 
 /* returns a single product */

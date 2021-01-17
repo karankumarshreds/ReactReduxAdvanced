@@ -8,7 +8,7 @@ export class NotAuthorizedError extends CustomError {
     this.error = error;
     Object.setPrototypeOf(this, NotAuthorizedError.prototype);
   }
-  serialize() {
+  serializeErrors() {
     return [
       {
         message: this.error,

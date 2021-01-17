@@ -8,5 +8,5 @@ export abstract class CustomError extends Error {
     Object.setPrototypeOf(this, CustomError.prototype);
   }
   // subclasses must have serialize method
-  abstract serialize(): { message: string }[];
+  abstract serializeErrors(): { message: string }[];
 }

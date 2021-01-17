@@ -6,14 +6,18 @@ const Header = () => {
   return (
     <Navbar bg="light" expand="md">
       <Container>
-        <Link to="/">
-          <Navbar.Brand href="#">shopify</Navbar.Brand>
+        <Link to="/" className="navbar-brand">
+          shopify
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link href="/cart">Cart</Nav.Link>
-            <Nav.Link href="/signin">Signin</Nav.Link>
+            <Link to="/cart" className="nav-link">
+              Cart
+            </Link>
+            <Link to="/signin" className="nav-link">
+              Signin
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
