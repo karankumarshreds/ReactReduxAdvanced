@@ -1,20 +1,32 @@
-import React from "react";
-import products from "../products";
+import React, { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import { productsFetchAction } from "../actions/productActions";
 import Card from "../components/ProductCard/ProductCard";
 import { Row, Col } from "react-bootstrap";
 
-const HomeScreen = () => {
-  const renderProducts = products.map((product) => (
-    <Col key={product._id} xs={12} md={6} lg={4} xl={3} className="my-2">
+const HomeScreen = (props) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(productsFetchAction());
+  }, [dispatch]);
+  const renderCards = props.products.map((product) => (
+    <Col className="my-2" xs={12} md={6} lg={4} xl={3} key={product?.id}>
       <Card product={product} />
     </Col>
   ));
   return (
     <div className="container my-5">
       <h1>Latest Products</h1>
-      <Row className="justify-content-center">{renderProducts}</Row>
+      <Row className="justify-content-center">{renderCards}</Row>
     </div>
   );
 };
 
-export default HomeScreen;
+const mapStateToProps = ({ productState }) => {
+  return {
+    ...productState,
+    products: Object.values(productState.products),
+  };
+};
+
+export default connect(mapStateToProps, {})(HomeScreen);

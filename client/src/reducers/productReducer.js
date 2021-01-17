@@ -20,7 +20,7 @@ export const productReducer = (
         products: { ..._.mapKeys(action.payload, "id") },
       };
     case PRODUCTS_LIST_FAILED:
-      return { loading: false, error: action.payload };
+      return { loading: false, error: action.payload, products: {} };
     default:
       return state;
   }
