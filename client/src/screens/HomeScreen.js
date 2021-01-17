@@ -9,8 +9,6 @@ const HomeScreen = (props) => {
   useEffect(() => {
     dispatch(productsFetchAction());
   }, [dispatch]);
-  console.log();
-
   const renderCards = props.products.map((product) => (
     <Col className="my-2" xs={12} md={6} lg={4} xl={3} key={product?.id}>
       <Card product={product} />

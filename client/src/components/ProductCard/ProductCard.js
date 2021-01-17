@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
+import Modal from "../Modal/Modal";
 
 const ProductCard = ({ product }) => {
   return (
@@ -19,7 +20,13 @@ const ProductCard = ({ product }) => {
               <h5>${product.price}</h5>
             </Col>
             <Col>
-              <Button variant="primary">Add to cart</Button>
+              <Modal
+                headingText={product.name}
+                buttonText="Quick View"
+                contentText={product.description}
+                yesText="Know more"
+                noText="Cancel"
+              />
             </Col>
           </Row>
         </Card.Text>
