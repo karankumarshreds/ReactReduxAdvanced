@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Row, Col } from "react-bootstrap";
-import Modal from "../Modal/Modal";
+import Modal from "../Extras/Modal/Modal";
 
 const ProductCard = ({ product }) => {
   return (

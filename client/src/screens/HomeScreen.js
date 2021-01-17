@@ -3,6 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import { productsFetchAction } from "../actions/productActions";
 import Card from "../components/ProductCard/ProductCard";
 import { Row, Col } from "react-bootstrap";
+import Spinner from "../components/Extras/Spinner/Spinner";
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
@@ -14,6 +15,9 @@ const HomeScreen = (props) => {
       <Card product={product} />
     </Col>
   ));
+  if (props.loading) {
+    return <Spinner />;
+  }
   return (
     <div className="container my-5">
       <h1>Latest Products</h1>
