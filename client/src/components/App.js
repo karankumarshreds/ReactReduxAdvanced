@@ -8,8 +8,8 @@ import ProductScreen from "../screens/ProductScreen";
 const App = () => {
   return (
     <div>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Switch>
           <Route path="/" exact component={HomeScreen} />
           <Route path="/product/:id" exact component={ProductScreen} />
