@@ -3,6 +3,7 @@ import {
   PRODUCTS_LIST_SUCCESS,
   PRODUCTS_LIST_FAILED,
   PRODUCT_FETCH_FAIL,
+  PRODUCT_FETCH_SUCCESS,
 } from "../types";
 import productsApi from "../utils/api";
 
@@ -27,6 +28,7 @@ export const productsFetchAction = () => async (dispatch) => {
 
 export const productFetchAction = (id) => async (dispatch) => {
   try {
+    console.log("Fetching a single product");
     const { data } = await productsApi.get(`/api/product/${id}`);
     dispatch({
       type: PRODUCT_FETCH_SUCCESS,

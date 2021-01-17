@@ -34,7 +34,10 @@ export const productReducer = (
       return {
         ...state,
         error: false,
-        [action.payload.id]: action.payload,
+        products: {
+          ...state.products,
+          [action.payload.id]: action.payload,
+        },
       };
     case PRODUCT_FETCH_FAIL:
       return {

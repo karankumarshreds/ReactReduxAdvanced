@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { productsFetchAction } from "../actions/productActions";
 import Card from "../components/ProductCard/ProductCard";
-import { Row, Col, Modal, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
@@ -20,20 +20,6 @@ const HomeScreen = (props) => {
     <div className="container my-5">
       <h1>Latest Products</h1>
       <Row className="justify-content-center">{renderCards}</Row>
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>Modal body text goes here.</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
     </div>
   );
 };
