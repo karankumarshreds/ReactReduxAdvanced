@@ -12,7 +12,7 @@ const HomeScreen = (props) => {
     dispatch(productsFetchAction());
   }, [dispatch]);
   const renderCards = props.products.map((product) => (
-    <Col className="my-2 mx-2" xs={12} md={6} lg={4} xl={3} key={product?.id}>
+    <Col className="my-4 mx-4" xs={12} md={6} lg={4} xl={3} key={product?.id}>
       <Card product={product} />
     </Col>
   ));

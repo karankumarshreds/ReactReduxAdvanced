@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Row, Col } from "react-bootstrap";
 import Modal from "../Extras/Modal/Modal";
+import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   return (
-    <Card style={{ width: "18rem" }} className="mx-auto">
+    <Card style={{ width: "18rem" }} className="mx-auto ProductCard">
       <Link to={`/product/${product.id}`}>
         <Card.Img variant="top" src={product.image} />
       </Link>
