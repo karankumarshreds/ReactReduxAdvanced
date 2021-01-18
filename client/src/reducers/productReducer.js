@@ -34,6 +34,7 @@ export const productReducer = (
     case PRODUCT_FETCH_SUCCESS:
       return {
         ...state,
+        loading: false,
         error: false,
         products: {
           ...state.products,
@@ -43,6 +44,7 @@ export const productReducer = (
     case PRODUCT_FETCH_FAIL:
       return {
         ...state,
+        loading: false,
         error: action.payload,
       };
     default:
