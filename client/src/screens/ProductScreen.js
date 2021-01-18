@@ -6,9 +6,16 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 const ProductScreen = ({ match, product }) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(productFetchAction(match.params.id));
   }, [dispatch, match.params.id]);
+
+  const addToCart = () => {
+    // dispatch an action to add product to cart
+    console.log(match.params.id, qty);
+  };
+
   return (
     <Container className="my-5">
       <h1 className="mb-5">{product?.name}</h1>
@@ -22,8 +29,8 @@ const ProductScreen = ({ match, product }) => {
           <p>{product?.description}</p>
           <hr />
           <Row>
-            <Col xs={2}>
-              <strong>Status:</strong>
+            <Col xs={4} md={2}>
+              <h5>Status:</h5>
             </Col>
             <Col>
               <h5>{product?.countInStock > 0 ? "In Stock" : "Out of stock"}</h5>
@@ -47,7 +54,12 @@ const ProductScreen = ({ match, product }) => {
               </Form.Group>
             </Col>
             <Col xs={8}>
-              <Button variant="primary">Add to cart</Button>
+              <Button
+                onClick={() => addToCart()}
+                variant="primary"
+                disabled={product?.countInStock < 1}>
+                Add to cart
+              </Button>
             </Col>
           </Row>
         </Col>

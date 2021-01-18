@@ -31,7 +31,7 @@ const CustomModal = ({
           <Button variant="primary" onClick={(e) => submitFunction(e)}>
             {yesText || "Save"}
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="info" onClick={handleClose}>
             {noText || "Close"}
           </Button>
         </Modal.Footer>

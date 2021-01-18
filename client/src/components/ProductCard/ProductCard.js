@@ -30,7 +30,7 @@ const ProductCard = ({ product }) => {
                     <p>{product.description}</p>
                   </div>
                 }
-                yesText="Buy now"
+                yesText="Add to cart"
                 noText="Cancel"
               />
             </Col>

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Layout/Navbar";
 import HomeScreen from "../screens/HomeScreen";
 import ProductScreen from "../screens/ProductScreen";
+import CartScreen from "../screens/CartScreen";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={HomeScreen} />
           <Route path="/product/:id" exact component={ProductScreen} />
+          <Route path="/cart" exact component={CartScreen} />
         </Switch>
       </BrowserRouter>
     </div>
