@@ -22,4 +22,9 @@ export const cartItemAddAction = (productId, qty) => async (
   }
 };
 
-const cartITemRemoveAction = (id) => async (dispatch) => {};
+export const cartItemRemoveAction = (id) => async (dispatch) => {
+  dispatch({
+    type: CART_REMOVE_ITEM,
+    payload: id,
+  });
+};

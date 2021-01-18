@@ -17,6 +17,10 @@ const ProductScreen = ({ match, product }) => {
     dispatch(cartItemAddAction(match.params.id, qty));
   };
 
+  const renderProductStatus = (
+    <h5>{product?.countInStock > 0 ? "In Stock" : "Out of stock"}</h5>
+  );
+
   return (
     <Container className="my-5">
       <h1 className="mb-5">{product?.name}</h1>
@@ -33,9 +37,7 @@ const ProductScreen = ({ match, product }) => {
             <Col xs={4} md={2}>
               <h5>Status:</h5>
             </Col>
-            <Col>
-              <h5>{product?.countInStock > 0 ? "In Stock" : "Out of stock"}</h5>
-            </Col>
+            <Col>{renderProductStatus}</Col>
           </Row>
           <hr />
           <Row>
