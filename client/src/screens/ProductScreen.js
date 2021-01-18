@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { productFetchAction } from "../actions/productActions";
+import { cartItemAddAction } from "../actions/cartActions";
 import { connect, useDispatch } from "react-redux";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 
@@ -13,7 +14,7 @@ const ProductScreen = ({ match, product }) => {
 
   const addToCart = () => {
     // dispatch an action to add product to cart
-    console.log(match.params.id, qty);
+    dispatch(cartItemAddAction(match.params.id, qty));
   };
 
   return (

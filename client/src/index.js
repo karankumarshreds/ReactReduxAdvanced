@@ -13,7 +13,11 @@ import reducers from "./reducers";
 
 const store = createStore(
   reducers,
-  {},
+  {
+    cartState: {
+      cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
+    },
+  },
   composeWithDevTools(applyMiddleware(thunk))
 );
 

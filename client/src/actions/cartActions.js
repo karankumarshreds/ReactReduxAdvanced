@@ -1,7 +1,10 @@
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../types";
 import cartApi from "../utils/api";
 
-const cartItemAddAction = (productId, qty) => async (dispatch, getState) => {
+export const cartItemAddAction = (productId, qty) => async (
+  dispatch,
+  getState
+) => {
   try {
     const { data } = await cartApi.get(`/api/product/${productId}`);
     const { id, name, image, price, countInStock } = data;
