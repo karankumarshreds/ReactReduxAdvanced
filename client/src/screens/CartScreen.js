@@ -60,12 +60,19 @@ const CartScreen = (props) => {
                   <Row>
                     <Col md={2}>
                       <Link to={`/product/${item.id}`}>
-                        <Image src={item.image} fluid rounded />
+                        <Image
+                          src={item.image}
+                          fluid
+                          rounded
+                          className="my-2"
+                        />
                       </Link>
                     </Col>
                     <Col md={3}>{item.name}</Col>
-                    <Col md={2}>${item.price}</Col>
-                    <Col md={2}>
+                    <Col md={2} className="mb-2">
+                      ${item.price}
+                    </Col>
+                    <Col xs={3} md={2}>
                       <Form.Group>
                         <Form.Control
                           size="sm"
@@ -82,7 +89,7 @@ const CartScreen = (props) => {
                         </Form.Control>
                       </Form.Group>
                     </Col>
-                    <Col md={3}>
+                    <Col xs={1} md={3}>
                       <DeleteIcon
                         onClick={() => removeFromCart(item.id)}
                         style={{ cursor: "pointer" }}
