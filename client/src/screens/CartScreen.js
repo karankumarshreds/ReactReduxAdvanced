@@ -1,15 +1,103 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
+import {
+  cartItemAddAction,
+  cartItemRemoveAction,
+} from "../actions/cartActions";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  ListGroup,
+  Image,
+  Form,
+  Button,
+} from "react-bootstrap";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const CartScreen = (props) => {
-  const renderCartItems = () => {
-    return props?.cartItems?.map((item) => <h1 key={item?.id}>{item.name}</h1>);
+  const dispatch = useDispatch();
+
+  const emptyCartMessage = () => {
+    if (props?.cartItems?.length < 1) {
+      return (
+        <Card bg="light" text="dark" style={{ width: "100%" }}>
+          <Card.Body>
+            <Card.Title>Your cart is empty</Card.Title>
+            <Card.Text>
+              Go back to the home page and start exploring.{" "}
+              <Link to="/">Take me back!</Link>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      );
+    } else {
+      return <React.Fragment></React.Fragment>;
+    }
   };
+
+  const updateItemQuantity = (id, qty) => {
+    dispatch(cartItemAddAction(id, qty));
+  };
+
+  const removeFromCart = (id) => {
+    dispatch(cartItemRemoveAction(id));
+  };
+
   return (
-    <div>
-      <h1>Cart Screen</h1>
-      {renderCartItems()}
-    </div>
+    <Container className="my-5">
+      <h1>Shopping Cart</h1>
+      <Row>
+        <Col md={8}>
+          <br />
+          {emptyCartMessage()}
+          <ListGroup variant="flush">
+            {props?.cartItems?.map((item) => (
+              <React.Fragment>
+                <ListGroup.Item key={item.id}>
+                  <Row>
+                    <Col md={2}>
+                      <Link to={`/product/${item.id}`}>
+                        <Image src={item.image} fluid rounded />
+                      </Link>
+                    </Col>
+                    <Col md={3}>{item.name}</Col>
+                    <Col md={2}>${item.price}</Col>
+                    <Col md={2}>
+                      <Form.Group>
+                        <Form.Control
+                          size="sm"
+                          as="select"
+                          value={item.qty}
+                          onChange={(e) =>
+                            updateItemQuantity(item.id, e.target.value)
+                          }>
+                          {Array(item.countInStock)
+                            .fill(null)
+                            .map((el, i) => (
+                              <option key={i}>{i + 1}</option>
+                            ))}
+                        </Form.Control>
+                      </Form.Group>
+                    </Col>
+                    <Col md={3}>
+                      <DeleteIcon
+                        onClick={() => removeFromCart(item.id)}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              </React.Fragment>
+            ))}
+          </ListGroup>
+        </Col>
+        <Col md={2}></Col>
+        <Col md={2}></Col>
+      </Row>
+    </Container>
   );
 };
 
