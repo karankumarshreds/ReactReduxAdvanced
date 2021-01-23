@@ -47,7 +47,7 @@ const CartScreen = (props) => {
   };
 
   const proceedToCheckout = () => {
-    props.history.push("/login?redirect=shipping");
+    props.history.push("/signin?redirect=shipping");
   };
 
   return (
