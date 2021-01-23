@@ -5,8 +5,8 @@ import { NotFoundError } from "./utils";
 import { errorHandler } from "./utils/middlewares/error-handler";
 import { json } from "body-parser";
 // route imports
-import { productFetchRouter } from "./routes/products/index";
-import { userFetchRouter } from "./routes/users/index";
+import { productRouter } from "./routes/products/index";
+import { userRouter } from "./routes/users/index";
 
 const app = express();
 app.use(json());
@@ -16,8 +16,8 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
-app.use("/api/product", productFetchRouter);
-app.use("/api/user", userFetchRouter);
+app.use("/api/product", productRouter);
+app.use("/api/user", userRouter);
 app.all("*", async () => {
   throw new NotFoundError();
 });

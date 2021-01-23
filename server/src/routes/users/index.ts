@@ -1,11 +1,9 @@
 import express from "express";
-import { User } from "../../models/User";
+// controllers
+import { signinUser } from "../../controllers/user-controllers";
 
 const router = express.Router();
 
-router.get("/api/user", async (req, res) => {
-  const users = await User.find({});
-  res.send(users);
-});
+router.route("/signin").get(signinUser);
 
-export { router as userFetchRouter };
+export { router as userRouter };
