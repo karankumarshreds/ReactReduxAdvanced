@@ -46,6 +46,10 @@ const CartScreen = (props) => {
     dispatch(cartItemRemoveAction(id));
   };
 
+  const proceedToCheckout = () => {
+    props.history.push("/login?redirect=shipping");
+  };
+
   return (
     <Container className="my-5">
       <h1>Shopping Cart</h1>
@@ -116,7 +120,8 @@ const CartScreen = (props) => {
                 <Button
                   variant="primary"
                   className="btn-block"
-                  disabled={props.cartItems?.length === 0}>
+                  disabled={props.cartItems?.length === 0}
+                  onClick={() => proceedToCheckout()}>
                   Proceed to checkout
                 </Button>
               </ListGroup.Item>

@@ -9,7 +9,7 @@ import "./ProductCard.css";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const addToCart = () => {
-    dispatch(cartItemAddAction(product.id), 1);
+    dispatch(cartItemAddAction(product.id, 1));
   };
   return (
     <Card style={{ width: "18rem" }} className="mx-auto ProductCard">
