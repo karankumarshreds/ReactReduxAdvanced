@@ -5,7 +5,6 @@ import { cartItemAddAction } from "../../actions/cartActions";
 import { Card, Row, Col } from "react-bootstrap";
 import Modal from "../Extras/Modal/Modal";
 import "./ProductCard.css";
-import { add } from "lodash";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
