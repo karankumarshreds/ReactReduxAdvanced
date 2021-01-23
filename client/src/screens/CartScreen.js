@@ -113,7 +113,12 @@ const CartScreen = (props) => {
                 )}
               </ListGroup.Item>
               <ListGroup.Item>
-                <Button variant="primary">Proceed to checkout</Button>
+                <Button
+                  variant="primary"
+                  className="btn-block"
+                  disabled={props.cartItems?.length === 0}>
+                  Proceed to checkout
+                </Button>
               </ListGroup.Item>
             </ListGroup>
           </Card>
