@@ -5,8 +5,8 @@ import { NotFoundError } from "./utils";
 import { errorHandler } from "./utils/middlewares/error-handler";
 import { json } from "body-parser";
 // route imports
-import { productRouter } from "./routes/products/index";
-import { userRouter } from "./routes/users/index";
+import { productRouter } from "./routes/product-routes";
+import { userRouter } from "./routes/user-routes";
 
 const app = express();
 app.use(json());
