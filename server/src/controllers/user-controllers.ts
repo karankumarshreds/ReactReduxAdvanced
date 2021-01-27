@@ -51,7 +51,7 @@ const signupUserController = async (req: Request, res: Response) => {
  * @route /api/user/profile
  * ============================ */
 const profileUserController = async (req: Request, res: Response) => {
-  res.send({ currentUser: req.currentUser!.id });
+  res.send({ currentUser: req.currentUser!.id || null });
 };
 
 export { signinUserController, signupUserController, profileUserController };

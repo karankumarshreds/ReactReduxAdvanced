@@ -20,11 +20,14 @@ export const currentUser = async (
   next: NextFunction
 ) => {
   // compare the jwt coming from the req
-  const { token } = req.body;
-  const userId = jwt.verify(token, process.env.JWT_SECRET!) as UserPayload;
-  if (!token || !userId) {
+  const token = req.header("x-auth-token");
+  if (!token) {
     next();
   }
-  req.currentUser = userId;
+  const payload = jwt.verify(token!, process.env.JWT_SECRET!) as UserPayload;
+  if (!payload) {
+    next();
+  }
+  req.currentUser = payload;
   next();
 };
