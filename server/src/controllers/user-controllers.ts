@@ -7,6 +7,7 @@ import { BadRequestError } from "../utils";
 
 /** ============================
  * @route /api/user/signin
+ * @request POST
  * ============================ */
 const signinUserController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -30,6 +31,7 @@ const signinUserController = async (req: Request, res: Response) => {
 
 /** ============================
  * @route /api/user/signup
+ * @request POST
  * ============================ */
 const signupUserController = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -49,9 +51,19 @@ const signupUserController = async (req: Request, res: Response) => {
 
 /** ============================
  * @route /api/user/profile
+ * @request GET
  * ============================ */
 const profileUserController = async (req: Request, res: Response) => {
-  res.send({ currentUser: req.currentUser!.id || null });
+  const user = await User.findById(req.currentUser!.id);
+  if (!user) {
+    throw new BadRequestError("User not found");
+  }
+  const { name, email, id } = user;
+  res.send({
+    name,
+    email,
+    id,
+  });
 };
 
 export { signinUserController, signupUserController, profileUserController };
