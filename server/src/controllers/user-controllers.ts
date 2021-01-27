@@ -8,7 +8,7 @@ import { BadRequestError } from "../utils";
 /** ============================
  * @route /api/user/signin
  * ============================ */
-const signinUser = async (req: Request, res: Response) => {
+const signinUserController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
@@ -31,7 +31,7 @@ const signinUser = async (req: Request, res: Response) => {
 /** ============================
  * @route /api/user/signup
  * ============================ */
-const signupUser = async (req: Request, res: Response) => {
+const signupUserController = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
   const userExist = await User.findOne({ email });
   if (userExist) {
@@ -47,4 +47,11 @@ const signupUser = async (req: Request, res: Response) => {
   res.json({ token: generateToken(user.id) });
 };
 
-export { signinUser, signupUser };
+/** ============================
+ * @route /api/user/profile
+ * ============================ */
+const profileUserController = async (req: Request, res: Response) => {
+  res.send({ currentUser: req.currentUser!.id });
+};
+
+export { signinUserController, signupUserController, profileUserController };
