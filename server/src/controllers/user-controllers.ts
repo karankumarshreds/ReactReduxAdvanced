@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { generateToken } from "../utils/jwt";
 import { Password } from "../utils/password";
 // models
-import { User } from "../models/User";
+import { User, UserDoc } from "../models/User";
 import { BadRequestError } from "../utils";
 
 /** ============================
@@ -17,7 +17,6 @@ const signinUserController = async (req: Request, res: Response) => {
   }
   const validPassword = await Password.compare(user.password, password);
   if (!validPassword) {
-    console.log("INVALID PASSWORD FOR THE USER");
     throw new BadRequestError("Invalid username or password");
   }
   res.json({
@@ -54,11 +53,11 @@ const signupUserController = async (req: Request, res: Response) => {
  * @request GET
  * ============================ */
 const profileUserController = async (req: Request, res: Response) => {
-  const user = await User.findById(req.currentUser!.id);
+  const user: UserDoc = await User.findById(req.currentUser!.id);
   if (!user) {
     throw new BadRequestError("User not found");
   }
-  const { name, email, id } = user;
+  const { email, name, id } = user;
   res.send({
     name,
     email,

@@ -7,7 +7,7 @@ interface UserAttrs {
   password: string;
 }
 
-interface UserDoc extends mongoose.Document {
+export interface UserDoc extends mongoose.Document {
   name: string;
   email: string;
   password: string;
