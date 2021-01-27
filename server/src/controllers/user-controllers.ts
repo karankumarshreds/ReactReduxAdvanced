@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
-import { generateToken } from "../utils/jwt";
-import { Password } from "../utils/password";
+import { BadRequestError, generateToken, Password } from "../utils";
 // models
 import { User, UserDoc } from "../models/User";
-import { BadRequestError } from "../utils";
 
 /** ============================
  * @route /api/user/signin
