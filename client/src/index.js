@@ -11,11 +11,14 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import reducers from "./reducers";
 
+// initial state setup when app loads first
 const INITIAL_STATE = {
   // set the cartItems value in case its saved in the browser
   cartState: {
     cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
   },
+  // set the userInfo in the redux store if saved in the browser
+  userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
 };
 const store = createStore(
   reducers,
