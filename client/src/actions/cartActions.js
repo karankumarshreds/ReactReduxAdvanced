@@ -6,7 +6,6 @@ export const cartItemAddAction = (productId, qty) => async (
   getState
 ) => {
   try {
-    console.log("RECIEVED QTY", qty);
     const { data } = await cartApi.get(`/api/product/${productId}`);
     const { id, name, image, price, countInStock } = data;
     dispatch({
