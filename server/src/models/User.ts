@@ -7,9 +7,11 @@ interface UserAttrs {
   password: string;
 }
 
-export interface UserDoc extends UserAttrs, mongoose.Document {
-  isAdmin: Boolean;
-  createdAt: Date;
+declare global {
+  interface UserDoc extends UserAttrs, mongoose.Document {
+    isAdmin: Boolean;
+    createdAt: Date;
+  }
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {

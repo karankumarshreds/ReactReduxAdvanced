@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { BadRequestError, generateToken, Password } from "../utils";
 // models
-import { User, UserDoc } from "../models/User";
+import { User } from "../models/User";
 
 /** ============================
  * @route /api/user/signin
@@ -32,9 +32,8 @@ const signinUserController = async (req: Request, res: Response) => {
  * ============================ */
 const signupUserController = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
-  const userExist = await User.findOne({ email });
+  const userExist: UserDoc | null = await User.findOne({ email });
   if (userExist) {
-    await userExist.remove();
     throw new BadRequestError("Email in use");
   }
   const user = User.build({
@@ -51,7 +50,7 @@ const signupUserController = async (req: Request, res: Response) => {
  * @request GET
  * ============================ */
 const profileUserController = async (req: Request, res: Response) => {
-  const user: UserDoc = await User.findById(req.currentUser!.id);
+  const user: UserDoc | null = await User.findById(req.currentUser!.id);
   if (!user) {
     throw new BadRequestError("User not found");
   }
