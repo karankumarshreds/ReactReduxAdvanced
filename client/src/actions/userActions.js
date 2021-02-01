@@ -18,7 +18,7 @@ export const signin = (email, password) => async (dispatch) => {
       type: USER_LOGIN_REQUEST,
     });
     const { data } = await userApi.post(
-      "/ai/user/signin",
+      "/api/user/signin",
       { email, password },
       config
     );
@@ -30,8 +30,7 @@ export const signin = (email, password) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: USER_LOGIN_FAIL,
-      payload:
-        err?.response?.data?.errors[0]?.message || "Something went wrong",
+      payload: err?.response?.data?.errors[0]?.message,
     });
   }
 };
