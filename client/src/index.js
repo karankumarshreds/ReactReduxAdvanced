@@ -20,6 +20,7 @@ const INITIAL_STATE = {
   // set the userInfo in the redux store if saved in the browser
   userInfo: JSON.parse(localStorage.getItem("userInfo")) || null,
 };
+
 const store = createStore(
   reducers,
   INITIAL_STATE,

@@ -5,6 +5,7 @@ import {
 } from "../types";
 import userApi from "../utils/api";
 
+// headers config
 const config = {
   headers: {
     "Content-Type": "application/json",
