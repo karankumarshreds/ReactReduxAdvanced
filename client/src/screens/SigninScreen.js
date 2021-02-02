@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, connect } from "react-redux";
 import { signin } from "../actions/userActions";
-// bootstrap
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
 // components
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Spinner from "../components/Extras/Spinner/Spinner";
 import Error from "../components/Extras/Error/Error";
 import FormContainer from "../components/Extras/FormContainer";
@@ -22,7 +21,6 @@ const SigninScreen = (props) => {
   if (props.error) {
     return <Error errorHeading={props.error} />;
   }
-
   return (
     <FormContainer>
       <h1>Sign In</h1>
