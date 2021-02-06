@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch, Router } from "react-router-dom";
 import { WithoutAuth } from "../utils/without-auth";
 import { WithAuth } from "../utils/with-auth";
+import history from "../utils/history";
 // components
 import Navbar from "./Layout/Navbar";
 import HomeScreen from "../screens/HomeScreen";
@@ -12,7 +13,7 @@ import SigninScreen from "../screens/SigninScreen";
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
+      <Router history={history}>
         <Navbar />
         <Switch>
           <Route path="/" exact component={HomeScreen} />
@@ -20,7 +21,7 @@ const App = () => {
           <Route path="/cart" exact component={WithAuth(CartScreen)} />
           <Route path="/signin" exact component={WithoutAuth(SigninScreen)} />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };

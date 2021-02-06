@@ -4,7 +4,6 @@ import { useDispatch, connect } from "react-redux";
 import { signin } from "../actions/userActions";
 // components
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import Spinner from "../components/Extras/Spinner/Spinner";
 import Error from "../components/Extras/Error/Error";
 import FormContainer from "../components/Extras/FormContainer";
 
