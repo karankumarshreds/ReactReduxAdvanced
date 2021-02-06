@@ -2,13 +2,14 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
-} from "../types";
-import userApi from "../utils/api";
+} from '../types';
+import userApi from '../utils/api';
+import history from '../utils/history';
 
 // headers config
 const config = {
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 };
 
@@ -18,7 +19,7 @@ export const signin = (email, password) => async (dispatch) => {
       type: USER_LOGIN_REQUEST,
     });
     const { data } = await userApi.post(
-      "/api/user/signin",
+      '/api/user/signin',
       { email, password },
       config
     );
@@ -26,7 +27,8 @@ export const signin = (email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    history.push('/');
+    localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (err) {
     dispatch({
       type: USER_LOGIN_FAIL,

@@ -1,14 +1,14 @@
-import React from "react";
-import { Route, Switch, Router } from "react-router-dom";
-import { WithoutAuth } from "../utils/without-auth";
-import { WithAuth } from "../utils/with-auth";
-import history from "../utils/history";
+import React from 'react';
+import { Route, Switch, Router } from 'react-router-dom';
+import { WithoutAuth } from '../utils/without-auth';
+import { WithAuth } from '../utils/with-auth';
+import history from '../utils/history';
 // components
-import Navbar from "./Layout/Navbar";
-import HomeScreen from "../screens/HomeScreen";
-import ProductScreen from "../screens/ProductScreen";
-import CartScreen from "../screens/CartScreen";
-import SigninScreen from "../screens/SigninScreen";
+import Navbar from './Layout/Navbar';
+import HomeScreen from '../screens/HomeScreen';
+import ProductScreen from '../screens/ProductScreen';
+import CartScreen from '../screens/CartScreen';
+import SigninScreen from '../screens/SigninScreen';
 
 const App = () => {
   return (

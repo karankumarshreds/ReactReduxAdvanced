@@ -1,9 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import "./Navbar.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+// components
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import './Navbar.css';
 
-const Header = () => {
+const Header = ({ userInfo }) => {
+  const buttonsHandler = () => {
+    if (userInfo) {
+      return (
+        <NavDropdown title={userInfo?.name?.split(' ')[0]}>
+          <NavDropdown.Item href="#/action-1">My Profile</NavDropdown.Item>
+          <NavDropdown.Item href="#/action-2">Signout</NavDropdown.Item>
+        </NavDropdown>
+      );
+    } else {
+      return (
+        <Link to="/signin" className="nav-link">
+          Signin
+        </Link>
+      );
+    }
+  };
   return (
     <Navbar bg="light" expand="md">
       <Container>
@@ -16,9 +34,7 @@ const Header = () => {
             <Link to="/cart" className="nav-link">
               Cart
             </Link>
-            <Link to="/signin" className="nav-link">
-              Signin
-            </Link>
+            {buttonsHandler()}
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -26,4 +42,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = ({ userState }) => {
+  return { userInfo: userState.userInfo };
+};
+
+export default connect(mapStateToProps)(Header);
