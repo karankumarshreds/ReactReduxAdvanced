@@ -9,6 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
 import CartScreen from '../screens/CartScreen';
 import SigninScreen from '../screens/SigninScreen';
+import SignupScreen from '../screens/SignupScreen';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/product/:id" exact component={ProductScreen} />
           <Route path="/cart" exact component={WithAuth(CartScreen)} />
           <Route path="/signin" exact component={WithoutAuth(SigninScreen)} />
+          <Route path="/signup" exact component={WithoutAuth(SignupScreen)} />
         </Switch>
       </Router>
     </div>

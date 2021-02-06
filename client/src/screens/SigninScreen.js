@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, connect } from 'react-redux';
 import { signin } from '../actions/userActions';
 // components
-import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import Error from '../components/Extras/Error/Error';
 import FormContainer from '../components/Extras/FormContainer';
 
@@ -39,6 +39,9 @@ const SigninScreen = (props) => {
             onChange={(e) => setPassword(e.target.value)}></Form.Control>
         </Form.Group>
         <Button type="submit">Signin</Button>
+        <div>
+          Don't have an account? <Link to="/signup">Signup</Link>
+        </div>
       </Form>
     </FormContainer>
   );

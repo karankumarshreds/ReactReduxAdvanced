@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signup } from '../actions/userActions';
+// components
 import { Form, Button } from 'react-bootstrap';
+import FormContainer from '../components/Extras/FormContainer';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
