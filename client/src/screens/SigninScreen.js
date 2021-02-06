@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, connect } from "react-redux";
-import { signin } from "../actions/userActions";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, connect } from 'react-redux';
+import { signin } from '../actions/userActions';
 // components
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import Error from "../components/Extras/Error/Error";
-import FormContainer from "../components/Extras/FormContainer";
+import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import Error from '../components/Extras/Error/Error';
+import FormContainer from '../components/Extras/FormContainer';
 
 const SigninScreen = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const signinUser = (e) => {
@@ -17,11 +17,9 @@ const SigninScreen = (props) => {
     dispatch(signin(email, password));
   };
 
-  if (props.error) {
-    return <Error errorHeading={props.error} />;
-  }
   return (
     <FormContainer>
+      {props.error && <Error errorHeading={props.error} />}
       <h1>Sign In</h1>
       <Form onSubmit={(e) => signinUser(e)}>
         <Form.Group controlId="email">
