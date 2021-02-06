@@ -2,6 +2,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
 } from '../types';
 import userApi from '../utils/api';
 import history from '../utils/history';
@@ -35,4 +36,12 @@ export const signin = (email, password) => async (dispatch) => {
       payload: err?.response?.data?.errors[0]?.message,
     });
   }
+};
+
+export const signout = () => async (dispatch) => {
+  dispatch({
+    type: USER_LOGOUT,
+  });
+  localStorage.setItem('userInfo', '');
+  history.push('/');
 };

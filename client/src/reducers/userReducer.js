@@ -2,8 +2,8 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
-  USER_LOGIN_LOGOUT,
-} from "../types";
+  USER_LOGOUT,
+} from '../types';
 
 export const userReducer = (state = {}, action) => {
   switch (action.type) {
@@ -13,8 +13,8 @@ export const userReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload };
     case USER_LOGIN_FAIL:
       return { loading: false, error: action.payload };
-    case USER_LOGIN_LOGOUT:
-      return { loading: false };
+    case USER_LOGOUT:
+      return { loading: false, userInfo: null };
     default:
       return state;
   }

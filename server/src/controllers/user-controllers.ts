@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { BadRequestError, generateToken, Password } from "../utils";
+import { Request, Response } from 'express';
+import { BadRequestError, generateToken, Password } from '../utils';
 // models
-import { User } from "../models/User";
+import { User } from '../models/User';
 
 /** ============================
  * @route /api/user/signin
@@ -11,11 +11,11 @@ const signinUserController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
-    throw new BadRequestError("Invalid username or password");
+    throw new BadRequestError('Invalid username or password');
   }
   const validPassword = await Password.compare(user.password, password);
   if (!validPassword) {
-    throw new BadRequestError("Invalid username or password");
+    throw new BadRequestError('Invalid username or password');
   }
   res.json({
     id: user.id,
@@ -34,7 +34,7 @@ const signupUserController = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
   const userExist: UserDoc | null = await User.findOne({ email });
   if (userExist) {
-    throw new BadRequestError("Email in use");
+    throw new BadRequestError('Email in use');
   }
   const user = User.build({
     name,
@@ -52,7 +52,7 @@ const signupUserController = async (req: Request, res: Response) => {
 const profileUserController = async (req: Request, res: Response) => {
   const user: UserDoc | null = await User.findById(req.currentUser!.id);
   if (!user) {
-    throw new BadRequestError("User not found");
+    throw new BadRequestError('User not found');
   }
   const { email, name, id } = user;
   res.send({
