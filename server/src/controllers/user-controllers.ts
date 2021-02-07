@@ -62,4 +62,26 @@ const profileUserController = async (req: Request, res: Response) => {
   });
 };
 
-export { signinUserController, signupUserController, profileUserController };
+/** ============================
+ * @route /api/user/profile
+ * @request POST
+ * ============================ */
+const profileUpdateController = async (req: Request, res: Response) => {
+  const user: UserDoc = await User.findById(req.currentUser!.id);
+  if (!user) {
+    throw new BadRequestError('User not found');
+  }
+  const { name, email, password } = req.body;
+  user.name = name || user.name;
+  user.email = email || user.email;
+  user.password = password || user.password;
+  await user.save();
+  res.status(201).send(user);
+};
+
+export {
+  signinUserController,
+  signupUserController,
+  profileUserController,
+  profileUpdateController,
+};

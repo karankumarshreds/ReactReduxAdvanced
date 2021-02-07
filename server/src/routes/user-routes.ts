@@ -2,6 +2,7 @@ import express from 'express';
 // controllers
 import {
   profileUserController,
+  profileUpdateController,
   signinUserController,
   signupUserController,
 } from '../controllers/user-controllers';
@@ -14,4 +15,5 @@ const router = express.Router();
 router.route('/signin').post(signinUserController);
 router.route('/signup').post(signupUserController);
 router.route('/profile').get(authenticate, profileUserController);
+router.route('/profile').post(authenticate, profileUpdateController);
 export { router as userRouter };

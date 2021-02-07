@@ -46,6 +46,7 @@ export const signout = () => async (dispatch) => {
     type: USER_LOGOUT,
   });
   localStorage.removeItem('userInfo');
+  localStorage.removeItem('cartItems');
   history.push('/');
 };
 
