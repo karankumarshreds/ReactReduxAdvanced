@@ -75,8 +75,13 @@ const profileUpdateController = async (req: Request, res: Response) => {
   user.name = name || user.name;
   user.email = email || user.email;
   user.password = password || user.password;
-  await user.save();
-  res.status(201).send(user);
+  const updatedUser = await user.save();
+  res.status(201).json({
+    name: updatedUser.name,
+    email: updatedUser.email,
+    isAdmin: updatedUser.isAdmin,
+    token: generateToken(updatedUser.id),
+  });
 };
 
 export {
