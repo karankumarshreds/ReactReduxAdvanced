@@ -63,6 +63,7 @@ export const signup = ({ name, email, password }) => async (dispatch) => {
       },
       config
     );
+    localStorage.setItem('userInfo', JSON.stringify(data));
     history.push('/');
     dispatch({
       type: USER_SIGNUP_SUCCESS,

@@ -1,28 +1,54 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { signup } from '../actions/userActions';
 // components
 import { Form, Button } from 'react-bootstrap';
 import FormContainer from '../components/Extras/FormContainer';
+import Error from '../components/Extras/Error/Error';
+import Spinner from '../components/Extras/Spinner/Spinner';
+import CustomError from '../components/Extras/Error/Error';
 
-const Signup = () => {
+const Signup = ({ userState }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [customError, setCustomError] = useState('');
 
   const dispatch = useDispatch();
 
   const signupUser = (e) => {
     e.preventDefault();
     if (!email || !password || !name) {
-      return false;
+      return setCustomError('All fields needs to be filled');
     } else {
       dispatch(signup({ name, email, password }));
     }
   };
 
+  const { error, loading } = userState;
+  const showErrorOrLoading = () => {
+    if (error) {
+      return (
+        <Error
+          errorHeading={error}
+          errorDescription="Please try again with valid fields"
+        />
+      );
+    } else if (loading) {
+      return <Spinner />;
+    }
+  };
+
   return (
     <FormContainer>
+      {showErrorOrLoading()}
+      {customError && (
+        <CustomError
+          errorHeading={customError}
+          errorDescription={` `}
+          onDismiss={() => setCustomError()}
+        />
+      )}
       <h1>Sign Up</h1>
       <Form onSubmit={(e) => signupUser(e)}>
         <Form.Group controlId="name">
@@ -30,7 +56,7 @@ const Signup = () => {
           <Form.Control
             type="text"
             placeholder="Full name"
-            value={email}
+            value={name}
             onChange={(e) => setName(e.target.value)}></Form.Control>
         </Form.Group>
         <Form.Group controlId="email">
@@ -55,4 +81,8 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const mapStateToProps = ({ userState }) => {
+  return { userState };
+};
+
+export default connect(mapStateToProps)(Signup);
