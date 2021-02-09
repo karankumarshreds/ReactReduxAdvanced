@@ -1,7 +1,7 @@
 import {
   PROFILE_DETAILS_REQUEST,
   PROFILE_DETAILS_SUCCESS,
-  PROFILE_DETAILS_SUCCESS,
+  PROFILE_DETAILS_FAIL,
 } from '../types';
 import profileApi from '../utils/api';
 
@@ -13,9 +13,9 @@ const config = {
 };
 
 // fetches profile info for the logged in user
-export const profileFetchAction = () => async (dispactch, getState) => {
+export const profileFetchAction = () => async (dispatch, getState) => {
   const { token } = getState().userState?.userInfo;
-  dispactch({
+  dispatch({
     type: PROFILE_DETAILS_REQUEST,
   });
   try {
@@ -28,7 +28,7 @@ export const profileFetchAction = () => async (dispactch, getState) => {
     });
   } catch (err) {
     dispatch({
-      type: USER_LOGIN_FAIL,
+      type: PROFILE_DETAILS_FAIL,
       payload: err?.response?.data?.errors[0]?.message,
     });
   }

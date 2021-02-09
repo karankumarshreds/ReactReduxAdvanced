@@ -10,9 +10,14 @@ export const profileReducer = (
 ) => {
   switch (action.type) {
     case PROFILE_DETAILS_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, error: false, loading: true, profileDetails: null };
     case PROFILE_DETAILS_SUCCESS:
-      return { ...state, loading: false, profileDetails: action.payload };
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        profileDetails: action.payload,
+      };
     case PROFILE_DETAILS_FAIL:
       return {
         ...state,
