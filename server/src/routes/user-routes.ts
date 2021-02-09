@@ -14,6 +14,7 @@ const router = express.Router();
 /* Base URL => /api/user */
 router.route('/signin').post(signinUserController);
 router.route('/signup').post(signupUserController);
+
 router.route('/profile').get(authenticate, profileUserController);
 router.route('/profile').post(authenticate, profileUpdateController);
 export { router as userRouter };
