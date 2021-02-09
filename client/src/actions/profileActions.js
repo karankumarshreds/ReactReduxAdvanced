@@ -18,11 +18,18 @@ export const profileFetchAction = () => async (dispactch, getState) => {
   dispactch({
     type: PROFILE_DETAILS_REQUEST,
   });
-  const { data } = await profileApi.get('/api/user/profile', {
-    headers: { ...config.headers, 'x-auth-token': token },
-  });
-  dispatch({
-    type: PROFILE_DETAILS_SUCCESS,
-    payload: data,
-  });
+  try {
+    const { data } = await profileApi.get('/api/user/profile', {
+      headers: { ...config.headers, 'x-auth-token': token },
+    });
+    dispatch({
+      type: PROFILE_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: USER_LOGIN_FAIL,
+      payload: err?.response?.data?.errors[0]?.message,
+    });
+  }
 };
